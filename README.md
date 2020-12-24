@@ -1,5 +1,5 @@
 # mingw-w64-qt4
-Files are a copy of https://github.com/msys2/MINGW-packages-dev/tree/master/mingw-w64-qt4
+Files are a copy of https://github.com/msys2/MINGW-packages-dev/tree/master/mingw-w64-qt4 (using that [procedure](https://stackoverflow.com/a/24577293))
 
 I reproduce here this legacy mingw-w64 package which is still currently used in TeXmacs for windows
 but no longer available readily built in the [msys2 repo](http://repo.msys2.org/mingw/i686/).
