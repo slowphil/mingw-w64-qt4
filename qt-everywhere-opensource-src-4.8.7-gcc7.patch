@@ -1,0 +1,21 @@
+--- qt-everywhere-opensource-src-4.8.7/src/script/script.pro.gcc7	2015-05-07 16:14:43.000000000 +0200
++++ qt-everywhere-opensource-src-4.8.7/src/script/script.pro	2017-10-11 13:17:16.630401762 +0200
+@@ -105,5 +105,5 @@
+     CFLAGS += --diag_remark=236,82
+ }
+ 
+-# WebKit doesn't compile in C++0x mode
+-*-g++*:QMAKE_CXXFLAGS -= -std=c++0x -std=gnu++0x
++# WebKit doesn't compile in C++11+ mode
++*-g++*:QMAKE_CXXFLAGS += -std=gnu++98
+--- qt-everywhere-opensource-src-4.8.7/src/plugins/accessible/widgets/itemviews.cpp.gcc7	2015-05-07 16:14:48.000000000 +0200
++++ qt-everywhere-opensource-src-4.8.7/src/plugins/accessible/widgets/itemviews.cpp	2017-10-11 14:47:46.149073439 +0200
+@@ -393,7 +393,7 @@
+     QModelIndex index = view()->model()->index(0, column, view()->rootIndex());
+     if (!index.isValid() || view()->selectionMode() & QAbstractItemView::NoSelection)
+         return false;
+-    view()->selectionModel()->select(index, QItemSelectionModel::Columns & QItemSelectionModel::Deselect);
++    view()->selectionModel()->select(index, QItemSelectionModel::SelectionFlag(QItemSelectionModel::Columns & QItemSelectionModel::Deselect));
+     return true;
+ }
+ 

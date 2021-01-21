@@ -72,7 +72,8 @@ optdepends=($([[ "$_variant" == "-shared" ]] && echo \
 groups=("${MINGW_PACKAGE_PREFIX}-qt4")
 options=('!strip' 'staticlibs')
 _pkgfqn="qt-everywhere-opensource-src-${pkgver}"
-source=("https://download.qt.io/official_releases/qt/${pkgver%.*}/${pkgver}/${_pkgfqn}.tar.gz"
+#source=("https://download.qt.io/official_releases/qt/${pkgver%.*}/${pkgver}/${_pkgfqn}.tar.gz"
+source=("https://download.qt.io/archive/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz"
         0001-qt-4.6-demo-plugandpaint.patch
         0002-qt-4.8.0-fix-include-windows-h.patch
         0003-qt-4.8.0-fix-javascript-jit-on-mingw-x86_64.patch
@@ -97,7 +98,31 @@ source=("https://download.qt.io/official_releases/qt/${pkgver%.*}/${pkgver}/${_p
         0030-moc-boost-workaround.patch
         0031-qt4-gcc6.patch
         0032-qt4-icu59.patch
-        0100-qt4-build-debug-qmake.patch)
+        0100-qt4-build-debug-qmake.patch
+		 0002-Fix-build-with-GCC-8.3.patch
+		 qt-everywhere-opensource-src-4.8.0-QTBUG-21900.patch
+		 qt-everywhere-opensource-src-4.8.0-QTBUG-22037.patch
+		 qt-everywhere-opensource-src-4.8.3-qdbusconnection_no_debug.patch
+		 qt-everywhere-opensource-src-4.8.5-QTBUG-35459.patch
+		 qt-everywhere-opensource-src-4.8.6-qsystemtrayicon-plugin-system.patch
+		 qt-everywhere-opensource-src-4.8.6-QTBUG-37380.patch
+		 qt-everywhere-opensource-src-4.8.6-QTBUG-34614.patch
+		 qt-everywhere-opensource-src-4.8.6-QTBUG-38585.patch
+		 qt4-openssl-1.1.0pre-3.patch
+		 qt-everywhere-opensource-src-4.8.7-openssl.patch
+		 qt-everywhere-opensource-src-4.8.7-gcc7.patch
+		 qt-everywhere-opensource-src-4.8.7-gcc9.patch
+		 qt-everywhere-opensource-src-4.8.7-missing-headers.patch
+		 qt-gcc11.patch
+		 0001-Fix-exclusion-of-anonymous-ciphers.patch
+		 disable-rc4-ciphers-bnc865241.diff
+		 CVE-2018-15518.patch
+		 CVE-2018-19869.patch
+		 CVE-2018-19870.patch
+		 CVE-2018-19871.patch
+		 qt-everywhere-opensource-src-4.8.7-crash-in-qppmhandler.patch
+		 CVE-2018-19873.patch
+		 qt-CVE-2020-17507.patch)
 sha256sums=('e2882295097e47fe089f8ac741a95fef47e0a73a3f3cdf21b56990638f626ea0'
             'e7c8fccf933dfee061b2960b5754e4835e7cb87c0e36166d3b11d69632732215'
             '5e6a61ced784d7d24c65d81e769b67b8f6066a33581c8b17cdf374a4c723cd23'
@@ -123,7 +148,32 @@ sha256sums=('e2882295097e47fe089f8ac741a95fef47e0a73a3f3cdf21b56990638f626ea0'
             '62bc20838da22d832c550b9d38f98afb8fa4874915466945ea320575e264869a'
             '51da49e41edac66559d3ec8dd0a152995a51a53e5d1f63f09fa089a8af7e3112'
             '61d6bf45649c728dec5f8d22be5b496ed9d40f52c2c70102696d07133cd1750d'
-            'e19a32b9dc050b3a605a6a5cb40fc3da8d8167ef240c105bb0737cc8bebadceb')
+            'e19a32b9dc050b3a605a6a5cb40fc3da8d8167ef240c105bb0737cc8bebadceb'
+			 'e95fc7e5e216354d1cc346e7a1c0a5bc2ad18382964b7f213405e9da8c542e81'
+             'e6c1c2d57171933e9848d6949be87bfb2557ac0667b27dbf3b81e229e31c6f7d'
+             'ed841c68d94cae948e7866cd0f708da9f05956ce24ebb289b487c736516fca10'
+             '648a06278bd4cbe98c61543475cf75b0251722d0f562e9ff8a3b8a89d3838811'
+             '134c4dbe720db75ecd8a29a26a5dffdd8ff4c41d852c2174749a061cb3d09ed5'
+             'e8582ebb2a5db99bf85789585516459ace42fc2b57fc7d5ff6156a2819bda282'
+             'e7f8d1c906640b836454e8202a48602352609d8e44a33a3de05dc1d20f5b1a8a'
+             'ffaa1da8a5df69ecee87d8329dc6e3d4d54adfcd695942fd7a58600d72e92bf5'
+             '3b10dcb6ec0b8c4c378ccd49790ecd0eaa2206ddd850922dd59e110c775654cc'
+             '5eb5b460847d1783767cf7305402902765fecd29d881da31ed5be864968048c2'
+             '2a24c5f5c066d64890840d402e62f338d327b3fa13ed8d8d55eb1bae8f011947'
+             '2251e8f218f251f1d3da6df66fd657965c0e4e8fca47580911c295d74949990c'
+             '48fc238d784777bdc17d58c619d982b821bdf8275b7e66c8f23b7ce21fa18c21'
+             '5cdad05764ce292b79aa63309e7c435094ad6dba22562e8a9f4f5bc252f7e7df'
+             '8a6c3584cc2822809567bf0194a4b937f4e6768a12c50c9405e49558ab9a5af5'
+             '932664d39436b33f2f763866dbd45d6dfffefd8c07d420a19fc2c75f8d91f575'
+             'a1c20fc176ce7c5db51b2ba73c1840c9f3da79f299dcefa3337992f7b111caf6'
+             'aef21fc9811e846f016d15f7d74eb1b5012aa03c547de9e89636438c691a363b'
+             'e149e0f16a4616c9517778b1a3308884fdc56f12c522e7d2ff1bad27316c2a59'
+             '54e752a76c00409c78e94fd41db4cd7cd0d107ca4a57b2a22f4a3b27d810a3dd'
+             'b2cc80f59aa591d4866544f42333b32bdca9855f543f821a0cfc652a0835496e'
+             '76bd32357fe8b04ad30224e42965ac913c319d5509223d0dbbbfc618e5f799c9'
+             '6e873e43cc2f7c1487021916ef355f06f77e73231b95aeca69a8e823339b6e5b'
+             'e5f8db55f33352034e55a98ff035192b7ccb87a5f54ae44ccbb2982fd43afa90'
+)
 
 prepare() {
   cd ${srcdir}/${_pkgfqn}
@@ -151,6 +201,32 @@ prepare() {
   patch -p1 -i ${srcdir}/0030-moc-boost-workaround.patch
   patch -p1 -i ${srcdir}/0031-qt4-gcc6.patch
   patch -p1 -i ${srcdir}/0032-qt4-icu59.patch
+  patch -p1 -i ${srcdir}/0002-Fix-build-with-GCC-8.3.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.0-QTBUG-21900.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.0-QTBUG-22037.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.3-qdbusconnection_no_debug.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.5-QTBUG-35459.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.6-qsystemtrayicon-plugin-system.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.6-QTBUG-37380.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.6-QTBUG-34614.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.6-QTBUG-38585.patch
+  patch -p1 -i ${srcdir}/qt4-openssl-1.1.0pre-3.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.7-openssl.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.7-gcc7.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.7-gcc9.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.7-missing-headers.patch
+  patch -p1 -i ${srcdir}/qt-gcc11.patch
+  patch -p1 -i ${srcdir}/0001-Fix-exclusion-of-anonymous-ciphers.patch
+  patch -p1 -i ${srcdir}/disable-rc4-ciphers-bnc865241.diff
+  patch -p1 -i ${srcdir}/CVE-2018-15518.patch
+  patch -p1 -i ${srcdir}/CVE-2018-19869.patch
+  patch -p1 -i ${srcdir}/CVE-2018-19870.patch
+  patch -p1 -i ${srcdir}/CVE-2018-19871.patch
+  patch -p1 -i ${srcdir}/qt-everywhere-opensource-src-4.8.7-crash-in-qppmhandler.patch
+  patch -p1 -i ${srcdir}/CVE-2018-19873.patch
+  patch -p1 -i ${srcdir}/qt-CVE-2020-17507.patch
+  
+  
 
   if check_option "debug" "y"; then
     patch -p1 -i ${srcdir}/0100-qt4-build-debug-qmake.patch
@@ -245,6 +321,8 @@ build() {
     -nomake demos \
     -nomake examples \
     -verbose \
+	-DWINVER=0x0A00 \
+	-D_WIN32_WINNT=0xA00 \
     ${pkg_conf_inc}
 
   # Fix building

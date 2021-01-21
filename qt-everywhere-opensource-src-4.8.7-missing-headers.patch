@@ -1,0 +1,15 @@
+diff -Nrup a/tools/assistant/tools/assistant/helpviewer_qwv.cpp b/tools/assistant/tools/assistant/helpviewer_qwv.cpp
+--- a/tools/assistant/tools/assistant/helpviewer_qwv.cpp	2015-05-07 16:14:40.000000000 +0200
++++ b/tools/assistant/tools/assistant/helpviewer_qwv.cpp	2019-10-09 04:39:40.208879672 +0200
+@@ -60,6 +60,11 @@
+ #include <QtNetwork/QNetworkReply>
+ #include <QtNetwork/QNetworkRequest>
+ 
++#include <QtWebKit/QWebView>
++#include <QtWebKit/QWebSettings>
++#include <QtWebKit/QWebPage>
++#include <QtWebKit/QWebFrame>
++
+ QT_BEGIN_NAMESPACE
+ 
+ // -- HelpNetworkReply
